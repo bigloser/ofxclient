@@ -132,7 +132,7 @@ class Client:
         """
         res, response = self._do_post(query)
         cookies = res.getheader('Set-Cookie', None)
-        if len(response) == 0 and cookies is not None and res.status == 200:
+        if cookies is not None and res.status == 500:
             logging.debug('Got 0-length 200 response with Set-Cookies header; '
                           'retrying request with cookies')
             _, response = self._do_post(query, [('Cookie', cookies)])
